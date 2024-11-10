@@ -66,7 +66,8 @@ int simpleauth_authenticate_user(const char *const user, const char *const passw
 bool simpleauth_valid_user(const char *const user)
 {
   bool valid = false;
-  if ((strcmp(user, APP_USER_NAME) == 0 || strcmp(user, ADMIN_USER_NAME) == 0))
+  //if ((strcmp(user, APP_USER_NAME) == 0 || strcmp(user, ADMIN_USER_NAME) == 0))
+  if ((strncmp(user, APP_USER_NAME, strlen(APP_USER_NAME)) == 0 || strcmp(user, ADMIN_USER_NAME) == 0))
   {
     valid = true;
   }
@@ -82,7 +83,8 @@ bool simpleauth_valid_user(const char *const user)
  */
 char *get_secret_for_user(const char *const user)
 {
-  if (0 == strcmp(user, APP_USER_NAME))
+  //if (0 == strcmp(user, APP_USER_NAME))
+  if (0 == strncmp(user, APP_USER_NAME, strlen(APP_USER_NAME)))
   {
     char *secret = read_secret(_mq_app_secret_file);
     if (secret != NULL)
